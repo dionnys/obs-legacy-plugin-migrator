@@ -86,6 +86,18 @@ powershell -ExecutionPolicy Bypass -File .\Migrate-ObsLegacyPlugins.ps1
 .\Migrate-ObsLegacyPlugins.ps1 -Undo
 ```
 
+### Ver qué plugins tienes instalados
+
+El repo incluye un segundo script, `Get-ObsPlugins.ps1`, que **solo lee** (no necesita administrador ni cerrar OBS). Lista tus plugins con versión, ubicación y estado: **OK** (ruta nueva), **Legado** (ruta antigua) y marca los duplicados.
+
+```powershell
+.\Get-ObsPlugins.ps1                  # plugins de terceros
+.\Get-ObsPlugins.ps1 -IncludeOBS      # incluye los propios de OBS
+.\Get-ObsPlugins.ps1 -Export "$env:USERPROFILE\Desktop\obs-plugins.csv"   # o .json
+```
+
+Parámetros: `-ObsPath`, `-Portable`, `-IncludeOBS`, `-Export <.csv|.json>` y `-Lang auto|es|en`. Si detecta plugins en Legado, te sugiere usar `Migrate-ObsLegacyPlugins.ps1`.
+
 ### Parámetros
 
 | Parámetro | Descripción |
@@ -214,6 +226,18 @@ powershell -ExecutionPolicy Bypass -File .\Migrate-ObsLegacyPlugins.ps1
 ```powershell
 .\Migrate-ObsLegacyPlugins.ps1 -Undo
 ```
+
+### See which plugins you have installed
+
+The repo includes a second script, `Get-ObsPlugins.ps1`, which is **read-only** (no Administrator needed, OBS can stay open). It lists your plugins with version, location and status: **OK** (new path), **Legacy** (old path), and flags duplicates.
+
+```powershell
+.\Get-ObsPlugins.ps1                  # third-party plugins
+.\Get-ObsPlugins.ps1 -IncludeOBS      # also OBS's own plugins
+.\Get-ObsPlugins.ps1 -Export "$env:USERPROFILE\Desktop\obs-plugins.csv"   # or .json
+```
+
+Parameters: `-ObsPath`, `-Portable`, `-IncludeOBS`, `-Export <.csv|.json>` and `-Lang auto|es|en`. If it finds Legacy plugins, it suggests running `Migrate-ObsLegacyPlugins.ps1`.
 
 ### Parameters
 
